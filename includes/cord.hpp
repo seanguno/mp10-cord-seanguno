@@ -7,9 +7,15 @@
 
 class Cord {
 public:
-  // Cord(std::string_view sv);
-  // ~Cord();
-  // SharedPointer<char> ToString() const;
+  Cord(std::string_view sv);
+  ~Cord();
+  SharedPointer<char> ToString() const;
+  // Inorder traversal
+
+  void SetLength(unsigned int length) { length_ = length; }
+  void SetRight(const SharedPointer<Cord>& kRight) { right_ = kRight; }
+  void SetLeft(const SharedPointer<Cord>& kLeft) { left_ = kLeft; }
+  bool IsDataEmpty() { return data_ == nullptr; }
 
   // Provided, do not modify!
   Cord() = default;
@@ -26,6 +32,7 @@ private:
   SharedPointer<Cord> right_;
   char* data_ = nullptr;
   unsigned int length_ = 0;
+  void ToStringHelper(char* string, int& count) const;
   // friend functions
   friend SharedPointer<Cord> ConcatCords(const SharedPointer<Cord>& left_cord,
                                          const SharedPointer<Cord>& right_cord);
